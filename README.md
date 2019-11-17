@@ -1,8 +1,8 @@
-#App Electron + React
+# App Electron + React
 
 Boilerplate inicial baseado na documentação oficial.
 
-
+...
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
