@@ -3,29 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "./",
-  "main": "src/main.js",
-  "dependencies": {
-    "electron": "^7.1.1",
-    "eslint": "^6.6.0",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.16.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "3.2.0"
-  },
+  "main": "public/electron-starter.js",
   "scripts": {
     "start": "nf start -p 3000",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "electron": "electron .",
-    "electron-start": "node src/main-react",
+    "electron-start": "node public/electron-wait-react",
     "react-start": "react-scripts start",
-    "pack": "build --dir",
-    "dist": "npm run build && build",
-    "postinstall": "install-app-deps"
+    "package-win": "npm run build && electron-builder build --win --x64 -c.extraMetadata.main=build/electron-starter.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,16 +29,35 @@
       "last 1 safari version"
     ]
   },
+  "dependencies": {    
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.16.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "3.2.0",
+    "typescript": "^3.7.2"
+  },
   "devDependencies": {
-    "electron-builder": "^21.2.0"
+    "electron": "^7.1.1",
+    "electron-builder": "^21.2.0",
+    "foreman": "^3.0.1"
   },
   "build": {
-    "appId": "com.ipiranga.pne",
+    "productName": "PNE",
+    "appId": "com.ipiranga.pne",    
     "win": {
-      "iconUrl": "https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-256.png"
+      "target": [ "nsis" ]
     },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
     "directories": {
-      "buildResources": "public"
+      "buildResources": "build",
+      "output": "release"
     }
   }
 }
